@@ -65,7 +65,7 @@ const SignUp = () => {
 
   //자리가 중요!! return 은 할상 hooks 밑에 위치해야 한다.
   if (data) {
-    return <Redirect to="/workspace/channel" />;
+    return <Redirect to="/workspace/sleact/channel/일반" />;
   }
 
   return (
