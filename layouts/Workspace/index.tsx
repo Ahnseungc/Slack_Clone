@@ -30,6 +30,8 @@ import { toast } from 'react-toastify';
 import CreateChannelModal from '@components/CreateChannelModal';
 import InviteWorkspaceModal from '@components/InviteWorkspaceModal';
 import InviteChannelModal from '@components/InviteChannelModal';
+import ChannelList from '@components/ChannelList';
+import DMList from '@components/DMList';
 
 const Workspace: FC = ({ children }) => {
   const {
@@ -46,6 +48,11 @@ const Workspace: FC = ({ children }) => {
     fetcher,
   );
 
+  // const { data: memberData } = useCallback(() => {
+  //   axios.post('http://localhost:3095/api/users/logout', null, {
+  //     withCredentials: true,
+  //   });
+  // }, []);
   const [showUserMenu, setShowUserMenu] = useState(false);
   const [showCreateWorkspaceModal, setShowCreateWorkspaceModal] = useState(false);
   const [showInviteWorkspaceModal, setShowInviteWorkspaceModal] = useState(false);
@@ -124,7 +131,9 @@ const Workspace: FC = ({ children }) => {
     setShowCreateChannelModal(true);
   }, []);
 
-  const onClickInviteworkspace = useCallback(() => {}, []);
+  const onClickInviteworkspace = useCallback(() => {
+    setShowInviteWorkspaceModal(true);
+  }, []);
 
   if (!userData) {
     return <Redirect to="/login" />;
@@ -175,9 +184,13 @@ const Workspace: FC = ({ children }) => {
                 <button onClick={onLogout}>로그아웃</button>
               </WorkspaceModal>
             </Menu>
-            {channelData?.map((v) => (
+            {/* {channelData?.map((v) => (
               <div>{v.name}</div>
-            ))}
+            ))} */}
+            {/* userData={userData} */}
+            <ChannelList />
+
+            <DMList userData={userData} />
           </MenuScroll>
         </Channels>
         <Chats>Chats</Chats>
